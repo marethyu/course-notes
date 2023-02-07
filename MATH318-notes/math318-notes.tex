@@ -42,6 +42,14 @@ myexample/.style={
 
 \newtcolorbox{texample}{myexample}
 
+\newcommand{\Bern}{\operatorname{Bern}}
+\newcommand{\Geom}{\operatorname{Geom}}
+\newcommand{\Pois}{\operatorname{Pois}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Bin}{\operatorname{Bin}}
+\newcommand{\Exp}{\operatorname{Exp}}
+
 \newtheorem*{theorem}{Theorem}
 
 % disable indentation
@@ -879,7 +887,7 @@ We either use $p_X (x)$ or $F_X (a)$ to specify a discrete random variable. We w
 
 \subsubsection{Bernoulli Random Variable}
 
-Bernoulli random variable $X \sim \text{Bern} (p)$ is useful for experiments involving binary outcomes, like ``pass'' and ``fail'' or ``positive'' or ``negative.'' $X$ either takes $0$ or $1$ where $0$ represents ``failure'' and $1$ represents ``success.''
+Bernoulli random variable $X \sim \Bern (p)$ is useful for experiments involving binary outcomes, like ``pass'' and ``fail'' or ``positive'' or ``negative.'' $X$ either takes $0$ or $1$ where $0$ represents ``failure'' and $1$ represents ``success.''
 
 \begin{figure}[H]
 \centering
@@ -919,7 +927,7 @@ Suppose you are carrying out some number of Bernoulli trials that has a success 
 
 $$P(X=n)= \underbrace{ (1-q)(1-q) \cdots (1-q) }_{ \text{$n-1$ times} } q=(1-q)^{n-1} q$$
 
-The suitable random variable for this problem is the geometric random variable $X \sim \text{Geom} (q)$. The possible values of $n$ are $1, 2, \dots$. Its PMF is given by
+The suitable random variable for this problem is the geometric random variable $X \sim \Geom (q)$. The possible values of $n$ are $1, 2, \dots$. Its PMF is given by
 
 $$p_X(n)=P(X=n)=(1-q)^{n-1} q$$
 
@@ -994,7 +1002,7 @@ P(X>n+m\mid X>n)&=\frac{P(X>n+m\cap X>n)}{P(X>n)}\\
 
 \subsubsection{Binomial Random Variable}
 
-Binomial random variable $X\sim\text{Binom}(n,q)$ describes the number of successes if an experiment is repeated $n$ times, each with success rate $q$. Each experiment must be independent of each other. Examples of such experiments like coin flips or any experiment with binary outcomes. \\
+Binomial random variable $X\sim\Bin(n,q)$ describes the number of successes if an experiment is repeated $n$ times, each with success rate $q$. Each experiment must be independent of each other. Examples of such experiments like coin flips or any experiment with binary outcomes. \\
 
 Its PMF is given by
 
@@ -1058,7 +1066,7 @@ $$P(X=3)={5\choose3}\left(\frac16\right)^3\left(\frac56\right)^2=0.032$$
 
 \subsubsection{Poisson Random Variable}
 
-Poisson random variable $X\sim\text{Pois}(\lambda)$ can be used to find the probability of some number of events happening in some specified time period given that the event happens at some constant rate of $\lambda$ and the events occur independently. Its PMF is given by
+Poisson random variable $X\sim\Pois(\lambda)$ can be used to find the probability of some number of events happening in some specified time period given that the event happens at some constant rate of $\lambda$ and the events occur independently. Its PMF is given by
 
 $$p_X(n)=P(X=n)=e^{-\lambda}\frac{\lambda^n}{n!}$$
 
@@ -1082,7 +1090,7 @@ Compared to binomial random variables which count discrete occurrences among dis
 
 When the number of trials $n$ of a binomial random variable approaches infinity and the probability of success $p$ approaches zero, it can be approximated with Poisson random variable with parameter $\lambda=pn$. This is a very robust approximation. \\
 
-Consider a binomial random variable $X\sim\text{Binom}(n,q)$, applying $\lambda=pn$ to its distribution gives
+Consider a binomial random variable $X\sim\Bin(n,q)$, applying $\lambda=pn$ to its distribution gives
 
 \begin{align}
 P(X = k) &= {n \choose k}p^k(1-p)^{n-k} \\
@@ -1105,7 +1113,7 @@ Birthday problem revisited: In a room of $n$ people, approximate the probability
 
 We will take a slightly different route from the last time. Imagine going over every possible pair of $n$ people and marking it off as a success when both of them share the same birthday. The probability of success happening is $\frac{1}{365}$. There are ${n \choose 2}$ possible pairs. \\
 
-We can employ the Poisson approximation here. Let $X\sim\text{Pois}(\lambda)$ denote the number of pairs who share the same birthday where the average number of successful pairs is $\lambda={n \choose 2}\frac{1}{365}$. The probability that at least one pair share the same birthday is $P(X>0)=1-P(X=0)$ where $P(X=0)$ is the probability that none of the pairs share the same birthday. We get
+We can employ the Poisson approximation here. Let $X\sim\Pois(\lambda)$ denote the number of pairs who share the same birthday where the average number of successful pairs is $\lambda={n \choose 2}\frac{1}{365}$. The probability that at least one pair share the same birthday is $P(X>0)=1-P(X=0)$ where $P(X=0)$ is the probability that none of the pairs share the same birthday. We get
 
 $$P(X>0)=1-e^{-\lambda}=1-\exp\left( -{n \choose 2}\frac{1}{365} \right)$$
 
@@ -1131,7 +1139,7 @@ P(\text{at most 2 success}) &= P(\text{0 success})+P(\text{1 success})+P(\text{2
 &= 0.67668
 \end{align*}
 
-An even better way to solve is to approximate using a Poisson random variable $X\sim\text{Pois}(\lambda)$ where $\lambda=pn=2$. This gives
+An even better way to solve is to approximate using a Poisson random variable $X\sim\Pois(\lambda)$ where $\lambda=pn=2$. This gives
 
 \begin{align*}
 P(X \le 2)&=P(X=0)+P(X=1)+P(X=2) \\
@@ -1162,7 +1170,7 @@ It represents the average result you get if you roll the dice for infinite numbe
 
 The expectation value for a Bernoulli random variable can be calculated in a straightforward manner as follows:
 
-$$E[X\sim\text{Bern}(p)]=1p+0(1-p)=p$$
+$$E[X\sim\Bern(p)]=1p+0(1-p)=p$$
 
 For geometric random variables, consider
 
@@ -1178,7 +1186,7 @@ $$q\sum_{n=0}^\infty n(1-q)^{n-1} = \sum_{n=0}^\infty nq(1-q)^{n-1} = \frac{1}{q
 
 This gives the closed formula for the expectation value of geometric random variables (remember that they start from $n=1$, not $n=0$):
 
-$$E[X\sim\text{Geom}(q)]=\sum_{n=1}^\infty nq(1-q)^{n-1}=\frac1q$$
+$$E[X\sim\Geom(q)]=\sum_{n=1}^\infty nq(1-q)^{n-1}=\frac1q$$
 
 For binomial random variables, consider
 
@@ -1194,7 +1202,7 @@ $$\sum_{k=0}^n k p(k) =n(1)^{n-1}q=nq$$
 
 This gives the expectation value for a binomial random variable
 
-$$E[X\sim\text{Binom}(n,q)]=nq$$
+$$E[X\sim\Bin(n,q)]=nq$$
 
 Finally, for Poisson random variables, we start with
 
@@ -1210,7 +1218,7 @@ $$f'(x)=\lambda e^{\lambda x-\lambda}$$
 
 Notice that $f(1)=1$, which is the total probability of Poisson PMF, and $f'(1)=\lambda$. This gives a Poisson random variable expectation
 
-$$E[X\sim\text{Pois}(\lambda)]=\lambda$$
+$$E[X\sim\Pois(\lambda)]=\lambda$$
 
 We see that the general strategy for finding closed-form expression for expectation is to start with a generating function of the following form
 
@@ -1270,10 +1278,16 @@ A continuous uniform distribution random variable $X\sim U(a, b)$ over the inter
 
 $$
 f_X(x)=\begin{cases}
-\frac{1}{b - a} & a \le x \le b \\
-0 & x<a\ \mathrm{or}\ x>b
+c & a \le x \le b \\
+0 & \text{otherwise}
 \end{cases}
 $$
+
+where $c$ is some normalization constant. We can calculate it by follows:
+
+\[\int_a^b cdx=c(b-a)=1\]
+
+which gives $c=\frac{1}{b-a}$.
 
 \begin{figure}[H]
 \centering
@@ -1285,9 +1299,17 @@ It can be used to model outcomes that lie in some boundary. The total probabilit
 
 $$(b-a)\frac{1}{b-a}=1$$
 
+Its CDF can be calculated by
+
+\[F_X(x)=P(X\le x)=\int_{-\infty}^x f_X(x) dx = \int_a^x \frac{1}{b-a} dx = \frac{x-a}{b-a}\]
+
+for $x\in[a,b]$. The full CDF for this distribution is:
+
+\[F_X(x)=\begin{cases} 0 & x<a \\ \frac{x-a}{b-a} & a\le x \le b \\ 1 & x>b \end{cases}\]
+
 \subsubsection{Exponential Random Variable}
 
-An exponential random variable $X\sim\text{Exp}(\lambda)$ of parameter $\lambda$ is described by the PDF
+An exponential random variable $X\sim\Exp(\lambda)$ of parameter $\lambda$ is described by the PDF
 
 $$
 f_X(x)=\begin{cases}
@@ -1503,12 +1525,12 @@ $$E[X]=\int_{-\infty}^\infty xf(x) dx$$
 
 Expectation for continuous uniform random variables can be calculated as follows:
 
-$$E[X\sim U(a,b)]=\int_{-\infty}^\infty xf(x) dx=\int_a^b \frac{a}{b-a} dx=\frac{a+b}{2}$$
+$$E[X\sim U(a,b)]=\int_{-\infty}^\infty xf(x) dx=\int_a^b \frac{x}{b-a} dx=\frac{a+b}{2}$$
 
 For exponential random variables, straightforward integration by parts gives
 
 \begin{align*}
-E[X\sim\text{Exp}(\lambda)]&=\int_0^\infty x\lambda e^{-\lambda x} dx \\
+E[X\sim\Exp(\lambda)]&=\int_0^\infty x\lambda e^{-\lambda x} dx \\
 &=\left. -xe^{-\lambda x} \right\vert_0^\infty + \int_0^\infty e^{-\lambda x} dx \\
 &=\frac{1}{\lambda}
 \end{align*}
@@ -1579,6 +1601,32 @@ There is an important special case to consider: Let $a$ and $b$ denote constants
 
 (The whole integral of the PDF is one: $\int_{-\infty}^\infty f(x) dx=1$.) This shows that expectation is linear.
 
+\begin{texample}
+A particle of mass 1g has a random velocity $X$ that is uniformly distributed between 3cm/s and 8cm/s. Find the probability density of the particle's kinetic energy $T=\frac12X^2$. Find the mean of $T$ in two ways: using the PDF for $T$ and the Law of the Unconscious Statistician. \\
+
+$X$ is a continuous uniform random variable with the following CDF:
+
+\[F_X(x)=P(X\le x)=\begin{cases} 0 & x<3 \\ \frac{x-3}{5} & 3\le x \le8 \\ 1 & x>8 \end{cases}\]
+
+The CDF for $T$ is:
+
+\[F_T(t)=P(T\le t)=P(\frac12X^2\le t)=P(X\le\sqrt{2t})=\begin{cases} 0 & t<\frac92 \\ \frac{\sqrt{2t}-3}{5} & \frac92\le t \le32 \\ 1 & t>32 \end{cases}\]
+
+The PDF for $T$ is:
+
+\[f_T(t)=\frac{d}{dt}F_T(t)=\begin{cases} 0 & t<\frac92 \\ \frac{1}{5\sqrt{2t}} & \frac92\le t \le32 \\ 1 & t>32 \end{cases}\]
+
+The mean for $T$ is using the PDF directly is:
+
+\[ET=\int_{\frac92}^{32} t\frac{1}{5\sqrt{2t}} dt=\frac{97}{6}\]
+
+or using the Law of the Unconscious Statistician:
+
+\[ET=E[\frac12X^2]=\int_3^8 \left( \frac12x^2 \right)\frac{1}{5}dx=\frac{97}{6}\]
+
+They both give the same answer!
+\end{texample}
+
 \subsection{Moment and Variance}
 
 The nth moment of a random variable $X$ is defined as
@@ -1589,17 +1637,17 @@ Note that $E(X^n) = (EX)^n$ is not true all the time. From the definition, it fo
 
 The variance (or second central moment) of $X$ is defined as
 
-\[ \text{Var}(X)=\sigma^2=E((x-\mu)^2) \]
+\[ \Var(X)=\sigma^2=E((x-\mu)^2) \]
 
-$\text{Var}(X)$ is always greater than or equal to zero. The standard deviation is just the square root of variance: $\sigma=\sqrt{\text{Var}(X)}$. They both measure the spread of distribution from the mean. \\
+$\Var(X)$ is always greater than or equal to zero. The standard deviation is just the square root of variance: $\sigma=\sqrt{\Var(X)}$. They both measure the spread of distribution from the mean. \\
 
 Note that the following is equivalent
 
-\[ \text{Var}(X)=E(X^2)-(EX)^2 \]
+\[ \Var(X)=E(X^2)-(EX)^2 \]
 
 \begin{proof}
 \begin{align*}
-\text{Var}(X)&=E((x-\mu)^2) \\
+\Var(X)&=E((x-\mu)^2) \\
 &=E(x^2-2x\mu+\mu^2) \\
 &=\int (x^2-2x\mu+\mu^2) f(x) dx \\
 &=\int x^2 f(x) dx -2\mu\int xf(x) dx + \mu^2 \int f(x) dx \\
@@ -1614,13 +1662,13 @@ Variances for some random variables are given in the below table
 \begin{center}
 \begin{tabular}{| c | c |}
 \hline
-Random variable $X$ & $\text{Var}(X)$ \\
+Random variable $X$ & $\Var(X)$ \\
 \hline
-$\text{Binom}(n,p)$ & $np(1-p)$ \\
+$\Bin(n,p)$ & $np(1-p)$ \\
 \hline
-$\text{Pois}(\lambda)$ & $\lambda$ \\
+$\Pois(\lambda)$ & $\lambda$ \\
 \hline
-$\text{Exp}(\lambda)$ & $\frac{1}{\lambda^2}$ \\
+$\Exp(\lambda)$ & $\frac{1}{\lambda^2}$ \\
 \hline
 $N(\mu,\sigma^2)$ & $\sigma^2$ \\
 \hline
@@ -1630,31 +1678,31 @@ $N(\mu,\sigma^2)$ & $\sigma^2$ \\
 \begin{theorem}
 Let $a$ and $b$ denote constants,
 
-\[ \text{Var}(aX+b)=a^2\text{Var}(X) \]
+\[ \Var(aX+b)=a^2\Var(X) \]
 
 or variance is independent of $b$ added to $X$ (ie. invariant of location) and if $X$ is scaled by $a$, variance is scaled by $a^2$.
 \end{theorem}
 
 \begin{proof}
-First, we prove that $\text{Var}(X+b)=\text{Var}(X)$,
+First, we prove that $\Var(X+b)=\Var(X)$,
 
 \begin{align*}
-\text{Var}(X+b)&=E((X+b)^2)-(E(X+b))^2
+\Var(X+b)&=E((X+b)^2)-(E(X+b))^2
 \intertext{Since expectation is linear operator: $E(X+b)=EX+b$,}
 &=E(X^2+2bX+b^2)-(EX+b)^2 \\
 &=E(X^2)+2b(EX)+b^2-((EX)^2+2b(EX)+b^2) \\
 &=E(X^2)+2b(EX)+b^2-(EX)^2-2b(EX)-b^2 \\
 &=E(X^2)-(EX)^2 \\
-&=\text{Var}(X)
+&=\Var(X)
 \end{align*}
 
-Next, we prove that $\text{Var}(aX)=a^2\text{Var}(X)$,
+Next, we prove that $\Var(aX)=a^2\Var(X)$,
 
 \begin{align*}
-\text{Var}(aX)&=E((aX)^2)-(E(aX))^2 \\
+\Var(aX)&=E((aX)^2)-(E(aX))^2 \\
 &=a^2E(X^2)-a^2(EX)^2 \\
 &=a^2(E(X^2)-(EX)^2) \\
-&=\text{Var}(X)
+&=\Var(X)
 \end{align*}
 \end{proof}
 
@@ -1748,7 +1796,7 @@ Consider the following joint PDF:
 \[ f_{XY}(x,y)=\begin{cases} x+y & 0\le x,y \le1 \\ 0 & \text{otherwise} \end{cases} \]
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.5]
 \draw[step=1cm,gray,very thin] (-2,-2) grid (6,6);
 \draw[thick,->] (-2,0) -- (5.5,0) node[anchor=north west] {$x$};
 \draw[thick,->] (0,-2) -- (0,5.5) node[anchor=south east] {$y$};
@@ -1765,7 +1813,7 @@ Find the marginal PDF for $X$. \\
 \[ f_X(x)=\int_{-\infty}^\infty f_{XY}(x,y) dy = \int_0^1 x+y\:dy = x+\frac12 \]
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.5]
 \draw[step=1cm,gray,very thin] (-2,-2) grid (6,6);
 \draw[thick,->] (-2,0) -- (5.5,0) node[anchor=north west] {$x$};
 \draw[thick,->] (0,-2) -- (0,5.5) node[anchor=south east] {$f_X(x)$};
@@ -1773,9 +1821,9 @@ Find the marginal PDF for $X$. \\
    \draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north] {$\i$};
 \foreach \y [count=\i from 0] in {0,4}
     \draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east] {$\i$};
-\draw[line width=4pt,red] (-2,0) -- (0,0);
-\draw[line width=4pt,red] (4,0) -- (5,0);
-\draw[line width=4pt,red] (0,2) -- (4,6);
+\draw[line width=2pt,red] (-2,0) -- (0,0);
+\draw[line width=2pt,red] (4,0) -- (5,0);
+\draw[line width=2pt,red] (0,2) -- (4,6);
 \end{tikzpicture}
 \end{center}
 \end{texample}
@@ -1852,22 +1900,34 @@ Since
 So $X$ and $Y$ are independent.
 \end{texample}
 
+\begin{texample}
+The time $T$ (in hours past noon) until the arrival of the first taxi has $\Exp(6)$ distribution, and the time $B$ until first bus is independent with $\Exp(4)$ distribution. What is the joint probability density function of $T$ and $B$? Find the probability that the first taxi arrives before the first bus. \\
+
+The joint PDF for $T$ and $B$ is:
+
+\[ f_{TB}(t,b)=f_T(t)f_B(b)=\begin{cases} 6e^{-6t}4e^{-4t} & t,b \ge 0 \\ 0 & \text{otherwise} \end{cases} \]
+
+The probability that the first taxi arrives before the first bus $T<B$ is:
+
+\[P(T<B)=\iint_{t<b} f_{TB}(t,b)db\:dt=\int_0^\infty \int_t^\infty 6e^{-6t}4e^{-4t} db\:dt=\frac35\]
+\end{texample}
+
 \subsubsection{Covariance and Correlation Coefficient}
 
 Covariance between two random variables $X$ and $Y$ is defined as
 
-\[ \text{Cov}(X,Y)=E[(X-EX)(Y-EY)] \]
+\[ \Cov(X,Y)=E[(X-EX)(Y-EY)] \]
 
-In particular, $\text{Cov}(X,X)=\text{Var}(X)$. There is another formula for covariance:
+In particular, $\Cov(X,X)=\Var(X)$. There is another formula for covariance:
 
 \begin{align*}
-\text{Cov}(X,Y)&=E[(X-EX)(Y-EY)] \\
+\Cov(X,Y)&=E[(X-EX)(Y-EY)] \\
 &=E[XY-(EX)Y-X(EY)+(EX)(EY)] \\
 &=E[XY]-E[X]E[Y]-E[X]E[Y]+E[X]E[Y] \\
 &=E[XY]-E[X]E[Y]
 \end{align*}
 
-\footnote{$\displaystyle E[XY]=\sum_i \sum_j x_iy_ip_{XY}(x_i,y_j)$} It follows that if $X$ and $Y$ are independent, $\text{Cov}(X,Y)=0$ since $E[XY]=E[X]E[Y]$.
+\footnote{$\displaystyle E[XY]=\sum_i \sum_j x_iy_ip_{XY}(x_i,y_j)$} It follows that if $X$ and $Y$ are independent, $\Cov(X,Y)=0$ since $E[XY]=E[X]E[Y]$.
 
 \begin{texample}
 Consider discrete random variables $X$ and $Y$, Their joint PMF is specified below
@@ -1884,7 +1944,7 @@ Consider discrete random variables $X$ and $Y$, Their joint PMF is specified bel
     \end{tabular}
 \end{center}
 
-Find $\text{Cov}(X,Y)$. \\
+Find $\Cov(X,Y)$. \\
 
 We have
 \[EX=0 \cdot \frac12 + 1 \cdot \left(\frac14+\frac14\right)=\frac12\]
@@ -1895,7 +1955,7 @@ We have
 
 Covariance of $X$ and $Y$ is therefore
 
-\[\text{Cov}(X,Y)=E[XY]-EXEY=0-\frac12\cdot\frac12=-\frac14\]
+\[\Cov(X,Y)=E[XY]-EXEY=0-\frac12\cdot\frac12=-\frac14\]
 
 \end{texample}
 
@@ -1921,7 +1981,7 @@ $$E[XY] = E[X^3] = \int_{-1}^{1} x^3 dx = 0$$
 
 The covariance is therefore
 
-\[ \text{Cov}(X,Y) = E[X^3] - E[X] E[X^2] = 0 - 0 \cdot \frac23 = 0 \]
+\[ \Cov(X,Y) = E[X^3] - E[X] E[X^2] = 0 - 0 \cdot \frac23 = 0 \]
 
 This means $X$ and $Y$ do not depend on each other linearly.
 
@@ -1932,7 +1992,7 @@ This means $X$ and $Y$ do not depend on each other linearly.
 \end{figure}
 
 \begin{texample}
-Suppose $5$ cards are drawn from the standard deck of $52$ cards. Denote random variables $X$ to be the number of spades in the hand and $Y$ to be the number of black cards in the hand. Calculate $\text{Cov}(X,Y)$. \\
+Suppose $5$ cards are drawn from the standard deck of $52$ cards. Denote random variables $X$ to be the number of spades in the hand and $Y$ to be the number of black cards in the hand. Calculate $\Cov(X,Y)$. \\
 
 Let's try calculating $P(X=2,Y=4)$, the probability that a poker hand contains $4$ black cards and $2$ spades first. There are ${52 \choose 5}$ ways to choose $5$ cards from the deck, ${13\choose2}$ ways to select 2 spades, ${13\choose2}$ ways to select the remaining 2 black cards excluding spades, and ${26\choose1}$ ways to choose a red card. The probability is
 
@@ -1974,9 +2034,9 @@ With expectation values
 
 There are two ways to calculate covariance: use $E[(X-EX)(Y-EY)]$ or $E[XY]-E[X]E[Y]$. Both methods give the same answer:
 
-\[\text{Cov}(X,Y)=\sum_{y=0}^5\sum_{x=0}^5 (x-EX)(y-EY) p_{XY}(x,y)=0.575980\]
+\[\Cov(X,Y)=\sum_{y=0}^5\sum_{x=0}^5 (x-EX)(y-EY) p_{XY}(x,y)=0.575980\]
 
-\[\text{Cov}(X,Y)=\left( \sum_{y=0}^5\sum_{x=0}^5 xyp_{XY}(x,y) \right)-(EX)(EY)=0.575980\]
+\[\Cov(X,Y)=\left( \sum_{y=0}^5\sum_{x=0}^5 xyp_{XY}(x,y) \right)-(EX)(EY)=0.575980\]
 
 When the number of spades increases, the number of black cards also increases. \\
 
@@ -1985,7 +2045,7 @@ Most of the computations in this example are handled by Python\footnote{\href{ht
 
 Correlation coefficient $\rho(X,Y)$ of $X$ and $Y$ is defined as
 
-\[\rho(X,Y)=\frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}\]
+\[\rho(X,Y)=\frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}\]
 
 It is a unitless quantity that measures correlation between $X$ and $Y$. It can be thought as the a normalized version of covariance since it takes values between $-1$ and $1$. To prove this statement, consider the following theorem:
 
@@ -2026,15 +2086,15 @@ $\rho(X,Y)$ only takes values between $-1$ and $1$.
 \end{theorem}
 
 \begin{proof}
-We know that $\text{Cov}(X,Y)=E[(X-EX)(Y-EY)]$. Applying the Cauchy-Schwarz inequality to $E[(X-EX)(Y-EX)]$ gives
+We know that $\Cov(X,Y)=E[(X-EX)(Y-EY)]$. Applying the Cauchy-Schwarz inequality to $E[(X-EX)(Y-EX)]$ gives
 
 \[|E[(X-EX)(Y-EY)]|^2 \le E[(X-EX)^2]E[(Y-EY)^2]\]
 
 By the definition of variance,
 
-\[|\text{Cov}(X,Y)|^2 \le \text{Var}(X)\text{Var}(Y)\]
+\[|\Cov(X,Y)|^2 \le \Var(X)\Var(Y)\]
 
-\[\frac{|\text{Cov}(X,Y)|^2}{\text{Var}(X)\text{Var}(Y)} \le 1\]
+\[\frac{|\Cov(X,Y)|^2}{\Var(X)\Var(Y)} \le 1\]
 
 Taking square root gives
 
@@ -2045,7 +2105,7 @@ So $-1\le\rho\le1$.
 
 It can be shown that
 
-\[\rho(X,Y)=\begin{cases} 1 & \text{iff $Y=aX+b$ where $a,b\in\mathbb{R}$ and $a>0$} \\[20pt] -1 & \text{iff $Y=aX+b$ where $a,b\in\mathbb{R}$ and $a<0$} \end{cases}\]
+\[\rho(X,Y)=\begin{cases} 1 & \text{iff $Y=aX+b$ where $a,b\in\mathbb{R}$ and $a>0$} \\ -1 & \text{iff $Y=aX+b$ where $a,b\in\mathbb{R}$ and $a<0$} \end{cases}\]
 
 In other words, $|\rho|=1$ if there is a direct linear relationship between $X$ and $Y$.
 
@@ -2054,27 +2114,27 @@ In other words, $|\rho|=1$ if there is a direct linear relationship between $X$ 
 \begin{theorem}
 If $X,Y$ are independent then
 
-\[\text{Var}(X+Y)=\text{Var}(X)+\text{Var}(Y)\]
+\[\Var(X+Y)=\Var(X)+\Var(Y)\]
 \end{theorem}
 
 \begin{proof}
 \begin{align*}
-\text{Var}(X+Y)&=E((X+Y)^2)-(E(X+Y))^2 \\
+\Var(X+Y)&=E((X+Y)^2)-(E(X+Y))^2 \\
 &=E(X^2+2XY+Y^2)-(EX+EY)^2 \\
 &=E(X^2)+2E(XY)+E(Y^2)-((EX)^2+2(EX)(EY)+(EY)^2) \\
 &=(E(X^2)-(EX)^2)+(E(Y^2)-(EY)^2)+2(E(XY)-(EX)(EY)) \\
-&=\text{Var}(X)+\text{Var}(Y)+2\text{Cov}(X,Y)
-\intertext{Since $X,Y$ are independent, $\text{Cov}(X,Y)=0$,}
-&=\text{Var}(X)+\text{Var}(Y)
+&=\Var(X)+\Var(Y)+2\Cov(X,Y)
+\intertext{Since $X,Y$ are independent, $\Cov(X,Y)=0$,}
+&=\Var(X)+\Var(Y)
 \end{align*}
 \end{proof}
 
 This result can be generalized to multiple random variables:
 
-\[\text{Var}\left( \sum_i X_i \right) = \sum_i \text{Var}(X_i)\]
+\[\Var\left( \sum_i X_i \right) = \sum_i \Var(X_i)\]
 
 \begin{texample}
-Find variance for a binomial random variable $X\sim\text{Binom}(n,p)$. \\
+Find variance for a binomial random variable $X\sim\Bin(n,p)$. \\
 
 We can write $X$ in terms of $n$ independent Bernoulli trials:
 
@@ -2084,19 +2144,182 @@ where $X_i$ are Bernoulli random variables. \\
 
 Since $X_i$s are independent from each other,
 
-\[\text{Var}(X)=\text{Var}\left( \sum_{i=1}^n X_i \right) = \sum_{i=1}^n \text{Var}(X_i)\]
+\[\Var(X)=\Var\left( \sum_{i=1}^n X_i \right) = \sum_{i=1}^n \Var(X_i)\]
 
 For a single trial, the variance is
 
-\[\text{Var}(X_i)=E(X_i^2)-(E(X_i))^2\]
+\[\Var(X_i)=E(X_i^2)-(E(X_i))^2\]
 
 Since $X_i^2=X_i$ and expectation for Bernoulli random variable is $p$,
 
-\[\text{Var}(X_i)=E(X_i)-(E(X_i))^2=p-p^2\]
+\[\Var(X_i)=E(X_i)-(E(X_i))^2=p-p^2\]
 
 The variance for a binomial random variable is therefore
 
-\[\text{Var}(X) = \sum_{i=1}^n p-p^2 = np(1-p)\]
+\[\Var(X) = \sum_{i=1}^n p-p^2 = np(1-p)\]
+\end{texample}
+
+\subsubsection{Sum of Independent Random Variables}
+
+Let $X$ and $Y$ be independent discrete random variables. The PMF of its sum $X+Y$ is:
+
+\[p_{X+Y}(n)=P(X+Y=n)\]
+
+To calculate $P(X+Y=n)$, we need to consider all possible combinations of $X$ and $Y$ that add up to $n$. This gives
+
+\[p_{X+Y}(n)=\sum_{j=0}^n P(X=j,Y=n-j)=\sum_{j=0}^n P(X=j)P(Y=n-j)\]
+
+where the last formula holds because $X$ and $Y$ are independent. The PMF $p_{X+Y}(n)$ is known as the convolution of PMFs $p_X(n)$ and $p_Y(n)$.
+
+\begin{texample}
+Suppose $X$ and $Y$ are independent Poisson random variables with parameters $\lambda_1$ and $\lambda_2$ respectively. Find the PMF of $X+Y$. \\
+
+For $n=0,1,2,\dots$, we have
+
+\begin{align*}
+p_{X+Y}(n)&=\sum_{j=0}^n P(X=j)P(Y=n-j) \\
+&=\sum_{j=0}^n \frac{\lambda_1^j e^{-\lambda_1}}{j!} \frac{\lambda_2^{n-j}e^{-\lambda_2}}{(n-j)!} \\
+&=e^{-(\lambda_1+\lambda_2)} \frac{1}{n!} \sum_{j=0}^n {n \choose j} \lambda_1^j \lambda_2^{n-j}
+\intertext{Applying binomial theorem $(a+b)^n=\sum_{k=0}^n{n \choose k} a^k b^{n-k}$,}
+&=e^{-(\lambda_1+\lambda_2)} \frac{(\lambda_1+\lambda_2)^n}{n!}
+\end{align*}
+
+We got $X+Y \sim \Pois(\lambda_1+\lambda_2)$
+\end{texample}
+
+The calculation is similar to binomial random variables. Suppose $X\sim\Bin(n,p)$ and $Y\sim\Bin(m,p)$, then $X+Y\sim\Bin(n+m,p)$. \\
+
+Now, suppose $X$ and $Y$ are continuous independent random variables. The CDF for $X+Y$ is:
+
+\[F_{X+Y}(a)=P(X+Y\le a)=\iint_R f_X(x)f_Y(y) dx\:dy\]
+
+where $R$ is the region that satisfied inequality $x+y\le a$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{23.png}
+\caption{Illustration of the Inequality $x+y\le a$}
+\end{figure}
+
+\begin{align*}
+F_{X+Y}(a)&=\iint_R f_X(x)f_Y(y) dx\:dy \\
+&=\int_{-\infty}^\infty \left( \int_{-\infty}^{a-y} f_X(x) dx \right) f_Y(y) dy \\
+&=\int_{-\infty}^\infty F_X(a-y) f_Y(y) dy
+\end{align*}
+
+We found the convolution for $F_X(a)$ and $F_Y(a)$. To find PDF for $X+Y$, we differentiate $F_{X+Y}(a)$ which gives
+
+\begin{align*}
+f_{X+Y}(a)&=\frac{d}{da} F_{X+Y}(a) \\
+&=\int_{-\infty}^\infty \left[ \frac{d}{da}F_X(a-y) \right] f_Y(y) dy \\
+&=\int_{-\infty}^\infty f_X(a-y) f_Y(y) dy
+\end{align*}
+
+\begin{texample}
+For $X\sim U(0,a)$ and $Y\sim U(0,b)$, calculate the probability density for $X+Y$, assuming that $a<b$. \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{24.png}
+\caption{Illustrations for PDFs $f_X(x)$, $f_Y(x)$ and $f_X(-x)$}
+\end{figure}
+
+The formula for finding convolution is:
+
+\[ f_{X+Y}(t)=\int_{-\infty}^\infty f_X(t-x) f_Y(x) dx \]
+
+We need to integrate the product $f_X(t-x)$ (which is basically the flipped version of $f_X(x)$) and $f_Y(x)$. Unfortunately, calculating the integral is not easy. We need to consider different cases for $t$. The ranges of $t$ that gives nonzero product are: $0<t<a$, $a<t<b$, and $b<t<a+b$. Integral is different in each case. \\
+
+Let's start with range $0<t<a$,
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{25.png}
+\end{figure}
+
+The product in this range is $\frac1a \frac1b = \frac{1}{ab}$ and the integral is
+
+\[f_{X+Y}(t)=\int_0^t \frac{1}{ab} dx = \frac{t}{ab}\]
+
+For range $a<t<b$,
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{26.png}
+\end{figure}
+
+\[f_{X+Y}(t)=\int_{t-a}^t \frac{1}{ab} dx = \frac{1}{b}\]
+
+Finally for range $b<t<a+b$,
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{27.png}
+\end{figure}
+
+\[f_{X+Y}(t)=\int_{t-a}^b \frac{1}{ab} dx = \frac{a+b-t}{ab}\]
+
+The final answer is:
+
+\[f_{X+Y}(t) = \begin{cases} \frac{t}{ab} & 0 < t < a \\ \frac1b & a < t < b \\ \frac{a+b-t}{ab} & b<t<a+b \\ 0 & \text{otherwise} \end{cases}\]
+
+The graph of this PDF looks like the following:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{28.png}
+\end{figure}
+
+This PDF shows probable $t$ values that can be decomposed into the sum $X+Y$. It is peaked in range $[a,b]$ because there are many ways to obtain the values between $a$ and $b$ than other points. There is only one way to obtain either $0$ or $a+b$, so their probabilities are close to zero.
+\end{texample}
+
+\begin{texample}
+Busy server queue: A web server has $N$ pending tasks. Find a PDF for calculating total time it takes to complete all tasks. \\
+
+Denote a random variable $X_i$ to be the time taken for completing task $i$. They are assumed to be independent from each other and can be modelled with an exponential random variable with parameter $\lambda$. \\
+
+We start by calculating PDF for $X_1+X_2$, the time of completion of task $2$. Applying the convolution formula we derived:
+
+\begin{align*}
+f_{X_1+X_2}(x)&=\int_{-\infty}^\infty f_{X_1}(x-y) f_{X_2}(y) dy \\
+&=\int_0^x \lambda e^{-\lambda (x-y)} \lambda e^{-\lambda y} dy \\
+&=\lambda^2 e^{-\lambda x} \int_0^x dy \\
+&=\lambda^2 xe^{-\lambda x}
+\end{align*}
+
+The below plot compares two PDFs $f_{X_1}(x)$ and $f_{X_1+X_2}(x)$:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{29.png}
+\caption{$f_{X_1}(x)$ and $f_{X_1+X_2}(x)$}
+\end{figure}
+
+It shows that the likely completion time for task $2$ is later than the completion time for task $1$. \\
+
+Next, we calculate PDF for $X_1+X_2+X_3$ which gives:
+
+\begin{align*}
+f_{X_1+X_2+X_3}(x)&=\int_{-\infty}^\infty f_{X_1+X_2}(x-y) f_{X_3}(y) dy \\
+&=\int_0^x \lambda^2 xe^{-\lambda (x-y)} \lambda e^{-\lambda y} dy \\
+&=\lambda^3 x^2\frac{e^{-\lambda x}}{2}
+\end{align*}
+
+and here is the comparison again:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{30.png}
+\caption{$f_{X_1}(x)$, $f_{X_1+X_2}(x)$ and $f_{X_1+X_2+X^3}(x)$}
+\end{figure}
+
+We can generalize our PDF for $N$ tasks as follows:
+
+\[f_{X_1+X_2+\cdots+X_N}(x)=\lambda^nx^{n-1}\frac{e^{-\lambda x}}{(n-1)!}\]
+
+This is the distribution for Gamma random variable: $X_1+X_2+\cdots+X_N\sim\text{Gamma}(N,\lambda)$. \\
+
+Remark: This is an example of Poisson process.
 \end{texample}
 
 \end{document}
