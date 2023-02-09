@@ -1070,7 +1070,7 @@ Poisson random variable $X\sim\Pois(\lambda)$ can be used to find the probabilit
 
 $$p_X(n)=P(X=n)=e^{-\lambda}\frac{\lambda^n}{n!}$$
 
-where $n=0,1,2,\dots$. It calculates the probability that $n$ events will happen at the specified time period. The parameter $\lambda>0$ can be thought as the mean number of event occurrences happening in the given time period. This PMF works because
+where $n=0,1,2,\dots$. It calculates the probability that $n$ events will happen at the specified time period. The parameter $\lambda>0$ can be thought as the mean number of event occurrences happening in the given time period or rate (units: occurrences per time). This PMF works because
 
 $$\sum_{n=0}^\infty p_X(n) = \sum_{n=0}^\infty e^{-\lambda}\frac{\lambda^n}{n!} = e^{-\lambda} \sum_{k=0}^\infty \frac{\lambda^n}{n!}=e^{-\lambda}e^\lambda=1$$
 
@@ -1912,6 +1912,64 @@ The probability that the first taxi arrives before the first bus $T<B$ is:
 \[P(T<B)=\iint_{t<b} f_{TB}(t,b)db\:dt=\int_0^\infty \int_t^\infty 6e^{-6t}4e^{-4t} db\:dt=\frac35\]
 \end{texample}
 
+\begin{texample}
+If $X,Y$ are independent $N(0,1)$ random variables, what is the distribution of $R=\sqrt{X^2+Y^2}$? \\
+
+We first calculate CDF for $R$:
+
+\begin{align*}
+F_R(a)&=P(\sqrt{X^2+Y^2}\le a) \\
+&=P(X^2+Y^2\le a^2) \\
+&=\iint_{x^2+y^2\le a^2} \frac{1}{2\pi}\exp\left(-\frac{x^2+y^2}{2}\right) dx\:dy
+\intertext{Changing to polar coordinates gives}
+&=\frac{1}{2\pi}\int_0^{2\pi} \int_0^a \exp\left(-\frac{r^2}{2}\right) r dr\:d\theta \\
+&=1-\exp\left(-\frac{a^2}{2}\right)
+\end{align*}
+
+PDF can be calculated via differentiating the CDF:
+
+\[f_R(a)=\frac{d}{da}\left( 1-\exp\left(-\frac{a^2}{2}\right) \right)=a\exp\left(-\frac{a^2}{2}\right)\]
+\end{texample}
+
+\begin{texample}
+A point $(X,Y)$ is uniformly chosen in the unit disc $x^2+y^2\leq 1$. (a) Determine the marginal PDF of $X$ and $Y$ and justify whether $X$ and $Y$ are independent. (b) Find the PDF of its distance from the origin $R = \sqrt{X^2+Y^2}$. Compute the expected distance from the origin. \\
+
+(a) The PDF for points uniformly distributed on the unit disk is given by:
+
+$$
+f(x,y)=\begin{cases}
+c & x^2+y^2\leq 1 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+The normalization factor $c$ is calculated by integrating over region $x^2+y^2\leq 1$ (this is same as finding the area of the unit circle):
+
+\[\iint_{x^2+y^2\leq 1} c dx\:dy = c\int_0^{2\pi}\int_0^1 rdr\:d\theta=c\pi=1 \]
+
+which gives $c=\frac{1}{\pi}$. \\
+
+The marginal PDFs for $X$ and $Y$ are:
+
+\[f_X(x)=\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} \frac{1}{\pi} dy = \frac{2}{\pi} \sqrt{1-x^2} \] for $x\in[-1,1]$.
+
+\[f_Y(y)=\int_{-\sqrt{1-y^2}}^{\sqrt{1-y^2}} \frac{1}{\pi} dx = \frac{2}{\pi} \sqrt{1-y^2} \] for $y\in[-1,1]$. \\
+
+Since $f_X(x)f_Y(y)\ne\frac{1}{\pi}$, $X$ and $Y$ are not independent. \\
+
+(b) The CDF for $R$ is:
+
+\[F_R(a)=P(X^2+Y^2\le a^2)=\iint_{x^2+y^2\leq a^2} \frac{1}{\pi} dx\:dy=\frac{1}{\pi}\int_0^{2\pi}\int_0^a rdr\:d\theta=a^2\]
+
+and its PDF is:
+
+\[f_R(a)=\frac{d}{da}(a^2)=2a\]
+
+So the expected distance from origin is given by:
+
+\[ER=\int_0^1 rf_R(r)dr=\int_0^1 2r^2dr=\frac23\]
+\end{texample}
+
 \subsubsection{Covariance and Correlation Coefficient}
 
 Covariance between two random variables $X$ and $Y$ is defined as
@@ -2274,7 +2332,7 @@ This PDF shows probable $t$ values that can be decomposed into the sum $X+Y$. It
 \end{texample}
 
 \begin{texample}
-Busy server queue: A web server has $N$ pending tasks. Find a PDF for calculating total time it takes to complete all tasks. \\
+Busy server queue: A web server has $n$ pending tasks. Find a PDF for calculating total time it takes to complete all tasks. \\
 
 Denote a random variable $X_i$ to be the time taken for completing task $i$. They are assumed to be independent from each other and can be modelled with an exponential random variable with parameter $\lambda$. \\
 
@@ -2313,13 +2371,96 @@ and here is the comparison again:
 \caption{$f_{X_1}(x)$, $f_{X_1+X_2}(x)$ and $f_{X_1+X_2+X^3}(x)$}
 \end{figure}
 
-We can generalize our PDF for $N$ tasks as follows:
+We can generalize our PDF for $n$ tasks as follows:
 
-\[f_{X_1+X_2+\cdots+X_N}(x)=\lambda^nx^{n-1}\frac{e^{-\lambda x}}{(n-1)!}\]
+\[f_{X_1+X_2+\cdots+X_n}(x)=\lambda^nx^{n-1}\frac{e^{-\lambda x}}{(n-1)!}\]
 
-This is the distribution for Gamma random variable: $X_1+X_2+\cdots+X_N\sim\text{Gamma}(N,\lambda)$. \\
-
-Remark: This is an example of Poisson process.
+This is the distribution for Gamma random variable: $X_1+X_2+\cdots+X_n\sim\text{Gamma}(n,\lambda)$.
 \end{texample}
+
+\subsubsection{Teaser: Poisson Processes}
+
+The busy server queue example we did is an example of Poisson process. Task completions occur continuously and independently. Denote random variable $N_t$ be the number of tasks completed by time $t$. The expectation for this random variable is:
+
+\[E[N_t]=\lambda t\]
+
+It makes sense because $\lambda$ can be interpreted as number of tasks done per unit time (ie. rate), so multiplying it by time $t$ will give the expected number of tasks done. \\
+
+Let's find a PMF for $N_t$.  We start by calculating $P(N_t\ge n)$ which is equivalent to $P(X_1+X_2+\cdots+X_n\le t)$, the probability that $n$ tasks completed by time $t$.
+
+\begin{align*}
+P(N_t\ge n)&=P(X_1+X_2+\cdots+X_n\le t) \\
+&=\int_0^t \frac{\lambda^nx^{n-1}}{(n-1)!} e^{-\lambda x} dx
+\intertext{Change of variables using $u=\lambda x$ gives,}
+&=\int_0^{\lambda t} \frac{u^{n-1}}{(n-1)!} e^{-u} du
+\intertext{Integration by parts gives,}
+&=-\left.\frac{u^{n-1}}{(n-1)!}e^{-u}\right\vert_0^{\lambda t} + \int_0^{\lambda t} \frac{u^{n-2}}{(n-2)!} e^{-u} du \\
+&=-\frac{(\lambda t)^{n-1}}{(n-1)!} e^{-\lambda t} + P(N_t \ge n - 1)
+\end{align*}
+
+Finally,
+
+\[P(N_t=n-1)=P(N_t \ge n-1) - P(N_t \ge n) = \frac{(\lambda t)^{n-1}}{(n-1)!} e^{-\lambda t}\]
+
+We conclude that $N_t$ is a Poisson random variable with parameter $\lambda t$: $N_t\sim\Pois(\lambda t)$.
+
+\subsection{Moment Generating Functions}
+
+The moment generating function (MGF) of a random variable $X$ is defined as:
+
+\[M_X(t)=E[e^{tX}]=\begin{cases} \displaystyle\int_{-\infty}^\infty e^{tx} f(x) dx & \text{$X$ continuous} \\[20pt] \displaystyle\sum_i e^{tx} p(x_i) & \text{$X$ discrete} \end{cases}\]
+
+for all $t$ values. As its name suggests, this function can be used to calculate moments of arbitrary order: $EX$, $E[X^2]$, $E[X^3]$, etc.. To see why this is true, we apply Taylor expansion on $e^{tX}$:
+
+\begin{align*}
+M_X(t)&=E[e^{tX}] \\
+&=E\left[ 1+tX+\frac{1}{2!}(tX)^2+\cdots+\frac{1}{n!}(tX)^n \right] \\
+&=1+tE[X]+\frac{t^2}{2!}E[X^2]+\cdots+\frac{t^n}{n!}E[X^n]
+\end{align*}
+
+So to get $n$th moment of $X$, we simply need to differentiate its MGF $n$ times then set $t=0$:
+
+\[E[X^n]=\left. \frac{d^n}{dt^n} M_X(t) \right\vert_{t=0}\]
+
+Here is a nice property for MGFs:
+
+\begin{theorem}
+If $X$ and $Y$ are independent random variables,
+
+\[M_{X+Y}(t)=M_X(t)M_Y(t)\]
+\end{theorem}
+\begin{proof}
+Recall that for independent $X,Y$, $E[XY]=E[X]E[Y]$.
+
+\[M_{X+Y}(t)=E[e^{t(X+Y)}]=E[e^{tX}e^{tY}]=E[e^{tX}]E[e^{tY}]=M_X(t)M_Y(t)\]
+\end{proof}
+
+Another important property of MGFs is that it can uniquely determine the distribution of $X$. \\
+
+Lastly, one thing to keep in mind is that MGFs does not always exist. For example, consider a continuous random variable $X\sim\Exp(\lambda)$. Its MGF is:
+
+\[M_X(t)=\int_0^\infty e^{tx} \lambda e^{-\lambda x} dx=\int_0^\infty \lambda e^{(t-\lambda)x} dx=\begin{cases} \infty & t \ge \lambda \\ \frac{\lambda}{\lambda-t} & t<\lambda \end{cases}\]
+
+\begin{texample}
+For $X\sim\Pois(\lambda)$, find its MGF and use it to find $E[X]$. \\
+
+\begin{align*}
+M_X(t)&=E[e^{tX}] \\
+&=\sum_{n=0}^\infty e^{tn} e^{-\lambda} \frac{\lambda^n}{n!} \\
+&=e^{-\lambda} \sum_{n=0}^\infty \frac{(\lambda e^t)^n}{n!} \\
+&=e^{-\lambda}e^{\lambda e^t} \\
+&=\exp(\lambda (e^t-1))
+\end{align*}
+
+To get the first moment, we differentiate its MGF once and setting $t=0$:
+
+\[E[X]=\left.\frac{d}{dt}\left[\exp(\lambda (e^t-1))\right]\right\vert_{t=0}=\left.\lambda e^t\exp(\lambda (e^t-1))\right\vert_{t=0}=\lambda\]
+\end{texample}
+
+\subsection{Characteristic Functions}
+
+The characteristic function of a random variable $X$ is defined as:
+
+\[\phi(t)=M_X(it)\]
 
 \end{document}

@@ -2345,4 +2345,235 @@ The total time it takes to see the pot to boil is:
 \[t=\frac{Q}{P}=\SI{5.8}{\minute}\]
 \end{texample}
 
+\subsection{Intensive and Extensive Properties}
+
+Many properties of a system like pressure, volume, internal energy, etc. can be categorized either as \textbf{intensive} property or \textbf{extensive} property. \\
+
+Intensive properties are properties whose magnitude that does not change when the system size changes. They are local (ie. can be defined at a point). \\
+
+Extensive properties, in contrast, refer to properties whose magnitude changes with system size linearly. \\
+
+If an extensive property is multiplied by an intensive property (keeping it fixed), it becomes another extensive property. When an extensive property is divided by another extensive property, it becomes intensive property. But if two extensive properties are multiplied together, it becomes neither. \\
+
+Examples of intensive properties:
+
+\begin{enumerate}
+\item Temperature $T$ (Since $U=\frac{f}{2}Nk_BT$, temperature is proportional to $\frac{U}{N}$. Extensive property divided by another becomes intensive property.)
+\item Pressure $P$ (According to the ideal gas law $P=\frac{Nk_BT}{V}$, so pressure is proportional to $\frac{N}{V}$ which is an extensive property.)
+\item Density $\rho$ (Proportional to $\frac{m}{V}$.)
+\end{enumerate}
+
+Examples of extensive properties:
+
+\begin{enumerate}
+\item Mass $m$
+\item Volume $V$
+\item Number of particles $N$
+\item Internal energy $U$ (Depends on number of particles: $U=\frac{f}{2}Nk_BT$ and also the product of an extensive property and an intensive property is another extensive property.)
+\end{enumerate}
+
+\begin{texample}
+Determine whether these quantities are extensive or intensive: $\frac{N}{P}$, $PT$, $\frac{U^2}{N}$, number of microstates $\Omega$, $PV$ and $\frac{V}{N}$. \\
+
+Intensive:
+\begin{enumerate}
+\item $\frac{V}{N}$ (If we double the size of the system, it becomes $\frac{2V}{2N}=\frac{V}{N}$. The value does not change, so it is intensive.)
+\item $PT$ (Both $P$ and $T$ are intensive.)
+\end{enumerate}
+
+Extensive:
+\begin{enumerate}
+\item $\frac{N}{P}$ (Extensive property divided by intensive property still remain extensive.)
+\item $\frac{U^2}{N}$ (If we double the size of the system, $(2U)\frac{2U}{2N}=2\frac{U^2}{N}$. The magnitude changes linearly, so it is extensive.)
+\item $PV$
+\end{enumerate}
+
+Note that $\Omega$ is neither intensive nor extensive. Consider a simple two state system with $N$ particles and $q$ energy quantas, the number of microstates is calculated by
+
+\[\Omega(N,q)={N \choose q}\]
+
+If we double the size of the system, we get
+
+\[\Omega(2N,2q)={2N \choose 2q}>2{N \choose q}\]
+
+It does not change linearly at all. We call $\Omega$ a ``super extensive'' property.
+\end{texample}
+
+\begin{texample}
+Rewrite the ideal gas law in terms of intensive quantities: $P$, $T$ and mass density $\rho$ (or number density, if you prefer). \\
+
+\[PV=Nk_BT\]
+
+Dividing volume both sides,
+
+\[P=nk_BT\]
+
+where $n=\frac{N}{V}$ is number density. Multiplying both sides by mass of the single particle $m$ gives
+
+\[mP=\rho k_BT\]
+
+where $\rho=mn$ is mass density. Finally, we multiply both sides by Avogadro's number $N_A$,
+
+\[MP=\rho N_A k_B T=\rho RT\]
+
+where $M=mN_A$ is molar mass.
+
+\[\boxed{PM=\rho RT}\]
+\end{texample}
+
+\subsection{Review of Basic Statistical Mechanics Concepts}
+
+Macrostate is the thermodynamic state of a system, fully described by macroscopic quantities such as energy ($U$), temperature, pressure, volume, etc... \\
+
+Microstate is an exact microscopic description of the system, including, for example, all the positions and velocities of all the particles in a gas. \\
+
+Each macrostate has many microstates associated with it. We called the number of these microstates $\Omega$, the multiplicity. $\Omega$ is a function of state (the macrostate). \\
+
+For example, for a gas of $N$ particles, at volume $V$ and energy $U$, we should be able to compute $\Omega(N,V,U)$. \\
+
+Fundamental assumption of statistical mechanics states that in a system whose internal energy and volume is fixed (isolated), all microstates are equally likely, and the system spends, on average, the same amount of time in each microstate. \\
+
+It implies that an isolated system almost always evolves towards a macrostate with the largest multiplicity. \\
+
+The larger the system is, the more the macrostate with the largest multiplicity dominates and the less likely any fluctuations away from it are sampled: this is the thermodynamic limit. \\
+
+Once a large system reaches a macrostate close to one with the largest multiplicity, it will never spontaneously fluctuate away from it.
+
+\begin{texample}
+Consider an isolated box of gas expanding into vacuum:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{31.png}
+\end{figure}
+
+What can you conclude from this system? \\
+
+Since the system is isolated, total heat flowing in is $Q=0$ and work on the system is $W=0$. According to the first law of thermodynamics, $\Delta U=0$. Also, the volume of the whole system does not change, so $\Delta V=0$. \\
+
+Note that the pressure of the gas is changing, since it is expanding throughout the whole box.
+\end{texample}
+
+\section{Entropy}
+
+\subsection{Types of Systems}
+Just before we define our notion of this mysterious "entropy", it will help to define what different kinds of systems mean. An \textbf{Open system} is one in which both matter and energy can be exchanged with its environment. A \textbf{Closed system} is a system where energy can be exchanged with the environment, but no matter. Finally, an \textbf{isolated} system is where neither matter nor energy can be exchanged with the environment. \\
+
+As a quick example, suppose the system is a half cup of water. If we leave the top of the cup open, it's an open system as the water molecules can evaporate and leave the cup. If we close the top of the cup, then it's a closed system as we can still give energy to the cup (say, by heating it in a microwave) even if the water molecules can't escape from it. If the cup is perfectly insulated and closed off, then its an isolated system as neither matter nor energy can enter or exit the cup.
+
+\subsection{Entropy and Second Law of Thermodynamics}
+
+We saw that interacting systems, after long time, reach thermal equilibrium when they are in the macrostate with the greatest multiplicity. This is the result of the \textbf{second law of thermodynamics}: multiplicity tends to increase. \\
+
+In order to quantify multiplicity, we define entropy:
+
+\[ S=k_B\ln\Omega \]
+
+It is nothing but the scaled natural logarithm of the number of microstates of the system in some particular macrostate $\Omega$. The reason we take logarithm of $\Omega$ is that $\Omega$ tends to be very large. Logarithm helps us to easily perform calculations involving large numbers. \\
+
+The total entropy of a composite system containing two parts $A$ and $B$ is the sum of entropies of $A$ and $B$:
+
+\[S_{total}=k_B\ln\Omega_{total}=k_B\ln(\Omega_A\Omega_B)=k_B\ln\Omega_A+k_B\ln\Omega_B=S_A+S_B\]
+
+This result can be generalized to system containing more than two parts. We also see the another reason to take logarithm of $\Omega$. Recall from last section that $\Omega$ is a ``super extensive'' quantity. We take logarithm of $\Omega$ in order to turn it into a quantity which can be added up linearly. This makes the logarithm of $\Omega$ (a.k.a entropy) an extensive quantity! \\
+
+In general, more particles there are in a system, the bigger the system is, and the more energy it contains, the greater its entropy and multiplicity. \\
+
+There is more precise statement for the second law of thermodynamics. The total entropy of an \textit{isolated} system either increases or remains constant in any spontaneous process\footnote{Spontaneous processes refers to a process in which a system evolute in time without any external input. The evolution makes the system reach to its thermal equilibrium. An example of such process is a dispersion of gas molecules in a sealed container.}, but it never decreases. The second law explains why heat can only flow spontaneously from the hot object to the cold object, but not not the other way around because it will decrease entropy. \\
+
+For open or closed systems, it is more preferrable to rewrite the second law mathematically as follows:
+
+\[ \Delta S_\text{total} = \Delta S_\text{system} + \Delta S_\text{surroundings} \ge 0 \]
+
+The total entropy of the combined system and surroundings must increase or stay constant. A decrease in system entropy can only occur spontaneously if the entropy change of the surroundings is both positive in sign and has a larger magnitude than the entropy change of the system:
+
+\[\Delta S_\text{surroundings} > 0\]
+
+and
+
+\[\left|\Delta S_\text{surroundings}\right| > \left|\Delta S_\text{system}\right|\]
+
+One possible situation when entropy decreases is the freezing of a cup of water. Note that systems that can have its entropy decreased are referred to reversible processes which we will discuss later. \\
+
+Let's study an isolated system made up of two components: $A$ and $B$. The total energy $U_{tot}+U_A+U_B$ is constant. The only macroscopic internal adjustment the system can make is to move energy between $A$ and $B$. The macrostates are described by $U_A$ alone.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{32.png}
+\end{figure}
+
+Suppose we start with $U_A=0$. Since system $A$ has zero energy, it has one possible microstate, so that means its initial entropy is zero: $S=k_B\ln1=0$. On the other hand, system $B$ has energy $U_B=U_{tot}-U_A$. It has higher entropy than system $A$. This means energy will spontaneously flow from system $B$ to system. By the second law of thermodynamics, entropy of system $A$ will increase while the entropy of system $B$ will decrease.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=100mm]{33.png}
+\caption{Graphs of $S$, $S_A$ and $S_B$ when $U_{tot}=1000$ (\href{https://www.desmos.com/calculator/px64pose4a}{Desmos link}). Black dot is the equilibrium point}
+\end{figure}
+
+From the graph above, we see that the increasing of system $A$'s entropy is faster than the decreasing of system $B$'s entropy:
+
+\[|\Delta S_A|>|\Delta S_B|\]
+
+since the slope for the $S_A$ curve is steeper than the slope for the $S_B$ curve. The total entropy of the isolated system $S$ will spontaneously keep increasing until thermal equilibrium (at $U_A=465$) is reached where it will remain constant. At thermal equilibrium,
+
+\[\frac{\partial S}{\partial U_A}=0\]
+
+\[\frac{\partial S_A}{\partial U_A}=\frac{\partial S_B}{\partial U_B}\]
+
+Recall from last unit that at equilibrium, temperatures of $A$ and $B$ are equal. Also, we defined inverse temperature $\beta$ as:
+
+\[\beta=\frac{\partial \ln\Omega}{\partial U}\]
+
+Let's redefine temperature in terms of entropy. Since $\beta=\frac{1}{k_BT}$,
+
+\[\frac{1}{k_BT}=\frac{\partial \ln\Omega}{\partial U}\]
+\[\frac{1}{T}=\frac{\partial k_B\ln\Omega}{\partial U}=\frac{\partial S}{\partial U}\]
+
+Finally,
+
+\[\boxed{\frac{1}{T}=\left(\frac{\partial S}{\partial U}\right)_{N,V}}\]
+
+Temperature of a system is the reciprocal of the slope of its entropy vs. energy graph. The partial derivative is computed with the system's volume and number of particles treated as constant. \\
+
+This new definition of temperature allow us to find a formula for measuring entropy changes. Suppose we add a bit of heat $Q$ to a system while holding its volume $V$ and number of particles $N$ constant and doing no other forms of work, the first law of thermodynamics says:
+
+\[\Delta U=Q\]
+
+The change in entropy can be approximated using:
+
+\[\Delta S=\left(\frac{\partial S}{\partial U}\right)_{N,V} \Delta U=\frac{Q}{T}\]
+
+assuming that temperature is kept constant during the process.
+
+\begin{texample}
+An object with temperature $T_H=\SI{400}{\kelvin}$ is placed briefly in thermal contact with a cooler object at temperature $T_C=\SI{300}{\kelvin}$. A small amount of heat $\SI{1200}{\joule}$ flows between the two objects. How much has the entropy of the world changed? \\
+
+The heat will flow from the hotter object to the colder object. The total entropy change is the sum of entropy changes for both objects:
+
+\[\Delta S=\Delta S_H+\Delta S_C=\frac{Q_H}{T_H}+\frac{Q_C}{T_C}\]
+
+where $Q_H$ is the amount of heat flowed \textit{in} the hot object which is negative in this question and $Q_C$ is the amount of the heat flowed in the cold object.
+
+\[\Delta S=\frac{-\SI{1200}{\joule}}{\SI{400}{\kelvin}}+\frac{+\SI{1200}{\joule}}{\SI{300}{\kelvin}}=\SI{1}{\joule\per\kelvin}\]
+\end{texample}
+
+If the temperature is instead varying, the total entropy should take account of varying temperature. Also, we use $Q=C_vdT$ to express the relationship in terms of constant volume heat capacity:
+
+\[dS=\frac{C_vdT}{T}\]
+
+The total change in entropy can be calculated by integration:
+
+\[\Delta S=\int dS=\int_{T_i}^{T_f} \frac{C_v}{T} dT\]
+
+\begin{texample}
+A steel ball with heat capacity $C_v=\SI{1000}{\joule\per\kelvin}$ is being warmed by the heat of the Sun. Its temperature increases from $\SI{300}{\kelvin}$ to $\SI{350}{\kelvin}$. How much does its entropy change? Assume $C_v$ is constant. \\
+
+\begin{align*}
+\Delta S&=\int_{T_i}^{T_f} \frac{C_v}{T} dT \\
+&=C_v \ln\left( \frac{T_2}{T_1} \right) \\
+&=\SI{1000}{\joule\per\kelvin} \ln\left( \frac{350}{300} \right) \\
+&=\SI{154}{\joule\per\kelvin}
+\end{align*}
+\end{texample}
+
 \end{document}
