@@ -1,0 +1,35 @@
+\begin{appendices}
+	
+	\section{Table of Distributions}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			RV & PMF/PDF & Mean & Variance & Char. Func. \\
+			\hline
+			$\Bern(p)$ & $\displaystyle p(n)=p^n(1-p)^{1-n}$ & $\displaystyle p$ & $\displaystyle p(1-p)$ & $\displaystyle pe^{it}+(1-p)$\\
+			\hline
+			$\Bin(n,p)$ & $\displaystyle p(k) = \binom{n}{k}p^k (1-p)^{n-k}$ & $\displaystyle np$ & $\displaystyle np(1-p)$ & $\displaystyle (1-p+e^{it})^n$\\
+			\hline
+			$\Geom(q)$ & $\displaystyle p(k) = (1-q)^{k-1}q$ & $\displaystyle 1/q$ & $\displaystyle \frac{1-q}{q^2}$ & $\displaystyle \frac{qe^{it}}{1-(1-q)e^{it}}$\\
+			\hline
+			$\Pois(\lambda)$ & $\displaystyle p(n) = e^{-\lambda}\frac{\lambda^n}{n!}$ & $\displaystyle \lambda$ & $\displaystyle \lambda$ & $\displaystyle \exp\left(\lambda(e^{it} - 1)\right)$\\
+			\hline
+			$\Unif(a,b)$ &
+			$\displaystyle f(x) = \begin{cases}
+				\frac{1}{b-a} & x \in [a,b]\\
+				0 & \text{otherwise}
+			\end{cases}$ & $\displaystyle \frac{a+b}{2}$ & $\displaystyle \frac{(b-a)^2}{12}$ & $\displaystyle \frac{e^{ita}-e^{itb}}{it(b-a)}$\\
+			\hline
+			$\Exp(\lambda)$ &
+			$\displaystyle f(x) = \begin{cases}
+				\lambda e^{-\lambda x} & x \geq 0\\
+				0 & x < 0
+			\end{cases}$ & $\displaystyle 1/\lambda$ & $\displaystyle 1/\lambda^2$ & $\displaystyle \frac{\lambda}{\lambda - it}$\\
+			\hline
+			$\Norm(\mu, \sigma^2)$ & $\displaystyle f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$  & $\displaystyle \mu$ & $\displaystyle \sigma^2$ & $\displaystyle \exp\left(it\mu-\frac{\sigma^2 t^2}{2}\right)$\\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+\end{appendices}
