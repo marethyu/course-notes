@@ -2,7 +2,7 @@
 
 \subsection{Microstates and Macrostates}
 
-A specific microscopic configuration of a system is called a microstate. The more loose term is macrostate which specifies the general or macroscopic properties of a system. In the coin-flipping experiment, a microstate contains the state of each coin and a macrostate is the number of heads or tails.
+A specific microscopic configuration of a system is called a \textbf{microstate}. The more loose term is \textbf{macrostate} which specifies the general or macroscopic properties of a system. In the coin-flipping experiment, a microstate contains the state of each coin and a macrostate is the number of heads or tails.
 
 \begin{figure}[H]
 	\centering
@@ -12,7 +12,7 @@ A specific microscopic configuration of a system is called a microstate. The mor
 
 Each macrostate has some number of microstates and it is called multiplicity, denoted by $\Omega$. For the image above, $\Omega(\text{0 heads})=1$, $\Omega(\text{1 heads})=2$, $\Omega(\text{2 heads})=1$. The total number of microstates is $\Omega(\text{all})=1+2+1=4$. The probability of getting $n$ heads is $\frac{\Omega(n)}{\Omega(\text{all})}$. \\
 
-Macroscopic state: description of a system based on macroscopic observables only (not microscopic, atom-by-atom ones). E.g. total energy vs the distribution of energy. Other examples include temperature, volume and pressure.
+\textbf{Macroscopic state} or state variable is description of a system based on macroscopic observables only (not microscopic, atom-by-atom ones). For example temperature, volume and pressure are used to completely describe the state of (ideal) gas.
 
 \begin{texample}
 	You have $13$ cards, $6$ red ($R$) and $7$ black ($B$). You shuffle them and place them face up in two rows. The top row has $5$ cards, the bottom row $8$. If you do this many times, what number of red cards will the top row have most often? \\
@@ -58,7 +58,7 @@ Recall that heat is a spontaneous flow of energy on a microscopic scale. ``warme
 
 Zeroth law of thermodynamics states that if two objects A and B are immediately in thermal equilibrium when brought together, and A and C are immediately in thermal equilibrium when brought together, then B and C are also in thermal equilibrium. \\
 
-Thermal equilibrium is a state that any two objects will reach if they are in thermal contact (able to exchange heat) long enough. They might have different energy but have the same temperature. Being in equilibrium means things are not changing macroscopically. A thermometer is a system that allows us to visualize equilibrium. \\
+\textbf{Thermal equilibrium} is a state that any two objects will reach if they are in thermal contact (able to exchange heat) long enough. They might have different energy but have the same temperature. Being in equilibrium means things like temperature, energy and other relevant quantities are not changing macroscopically. A thermometer is a system that allows us to visualize equilibrium. \\
 
 A heat bath or reservoir is a system large enough s.t. the temperature is essentially unchanged after supplying or absorbing energy with much smaller systems. \\
 
@@ -677,7 +677,7 @@ $$V \propto N$$
 
 Combining all these three laws will derive the ideal gas law shown at the beginning. \\
 
-Also the ideal gas law is an equation of state; it depends only on the current state of the system, but not how the system got there. \\
+Also the ideal gas law is an \textbf{equation of state}; it depends only on the current state of the system, but not how the system got there. \\
 
 There are numerous implications from the ideal gas law. For a given amount of gas at a given temperature, doubling the pressure squeezes the gas into exactly half as much space. Or, at a given volume, doubling the temperature causes the pressure to double.
 
@@ -1994,12 +1994,21 @@ Extensive properties, in contrast, refer to properties whose magnitude changes w
 
 If an extensive property is multiplied by an intensive property (keeping it fixed), it becomes another extensive property. When an extensive property is divided by another extensive property, it becomes intensive property. But if two extensive properties are multiplied together, it becomes neither. \\
 
+Mathematically, suppose we have a quantity $f(V,N)$ that depends on extensive quantities $V$ and $N$. When $V,N$ are scaled by the factor of $\alpha$, $f(V,N)$ is said to be intensive if it does not change after scaling. That is,
+
+\[f(\alpha V, \alpha N)=f(V,N)\]
+
+On the other hand, $f(V,N)$ is extensive if it scales with respect to $\alpha$:
+
+\[f(\alpha V, \alpha N)=\alpha f(V,N)\]
+
 Examples of intensive properties:
 
 \begin{enumerate}
 	\item Temperature $T$ (Since $U=\frac{f}{2}Nk_BT$, temperature is proportional to $\frac{U}{N}$. Extensive property divided by another becomes intensive property.)
 	\item Pressure $P$ (According to the ideal gas law $P=\frac{Nk_BT}{V}$, so pressure is proportional to $\frac{N}{V}$ which is an extensive property.)
 	\item Density $\rho$ (Proportional to $\frac{m}{V}$.)
+	\item Specific heat capacity
 \end{enumerate}
 
 Examples of extensive properties:
@@ -2009,6 +2018,7 @@ Examples of extensive properties:
 	\item Volume $V$
 	\item Number of particles $N$
 	\item Internal energy $U$ (Depends on number of particles: $U=\frac{f}{2}Nk_BT$ and also the product of an extensive property and an intensive property is another extensive property.)
+	\item Heat capacity
 \end{enumerate}
 
 \begin{texample}
